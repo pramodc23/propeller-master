@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html style="-webkit-overflow-scrolling: touch;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rotate HTML elements by mouse in JavaScript - Propeller.js</title>
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi">
+    <link rel="stylesheet" href="example/css/normalize.css">
+    <link rel="stylesheet" href="example/css/turbine.css">
+</head>
+<body>
+
+<img src="example/img/turbineforthumbs.jpg" width="0px" height="0px">
+<img id="turbine" src="example/img/turbine.png" onmousedown="showLibraryInfo()" ontouchstart="showLibraryInfo()">
+
+<div class="content">
+    <h1 class="propeller">
+        Propeller.js
+    </h1>
+
+    <h1 class="title wind">
+        Wind energy facts
+    </h1>
+    <ul class="facts">
+        <li class="wind">Wind mills have been in use since 2000 B.C. and were first developed in China and Persia</li>
+        <li class="wind">There’s enough on-shore wind in America to power the country 10 times over</li>
+        <li class="wind">Google has invested $5 billion in a new underwater transmission line to connect offshore wind
+            farms in the Atlantic Ocean with 1.9 million households on the East Coast.
+        </li>
+        <li class="propeller">JavaScript library to rotate elements by mouse or touch gestures.</li>
+        <li class="propeller">Easy-to-use as jQuery
+            plugin:<br><strong>$(nodeOrSelector).propeller(options);</strong><br/> <br> or zero-dependancy library <br>
+            <strong>new Propeller(nodeOrSelector,
+                options)</strong></li>
+        <li class="propeller">Propeller uses requestAnimationFrame and GPU compositing for better performance. It is
+            also compatible with touch devices.
+        </li>
+    </ul>
+  
+
+    
+</div>
+<div class="arrow">
+    <img src="example/img/arrow.png">
+
+    <p>
+        Drag or swipe propeller
+    </p>
+</div>
+<script src="dist/propeller.min.js"></script>
+<script>
+    new Propeller(document.getElementById('turbine'), {
+        inertia: 0.99,
+        onDragStop: function() {
+            console.log('stop');
+        },
+        onDragStart: function () {
+            console.log('start');
+        }
+    });
+
+    function showLibraryInfo() {
+        if (window.libInfoShown !== true) {
+            var windStuff = document.getElementsByClassName('wind');
+            var libStuff = document.getElementsByClassName('propeller');
+            for (var i = 0; i < windStuff.length; i++) {
+                var obj = windStuff[i];
+                obj.style.display = 'none';
+            }
+            for (var i = 0; i < libStuff.length; i++) {
+                var obj = libStuff[i];
+                obj.style.display = 'inline-block';
+            }
+            window.libInfoShown = true;
+        }
+    }
+</script>
+</body>
+</html>
